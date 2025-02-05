@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.kapt)
+    id("kotlin-parcelize")
 }
 
 android {
@@ -49,6 +51,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -56,4 +59,28 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    //Arch Components
+    implementation(libs.androidx.viewmodel)
+    implementation(libs.androidx.lifecycle)
+
+    //Navigation
+    implementation(libs.androidx.navigation)
+
+    //Coil
+    implementation(libs.io.coil.kt.coil3)
+    implementation(libs.io.coil.kt.coil3.network)
+
+    //Retrofit
+    implementation(libs.com.square)
+    implementation(libs.com.gson)
+    implementation(libs.squareup.okhttp)
+    implementation(libs.squareup.okhttp.logging.interceptor)
+
+    //Unit Test
+    testImplementation(libs.coroutine.test)
+    testImplementation(libs.mockk)
+    testImplementation(libs.squareup.okhttp.mockwebserver)
+    testImplementation(libs.org.robolectric)
+    testImplementation(libs.turbine.test)
 }
