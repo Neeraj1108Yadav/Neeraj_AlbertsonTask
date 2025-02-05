@@ -39,6 +39,16 @@ android {
     buildFeatures {
         compose = true
     }
+    sourceSets{
+        this.getByName("test"){
+            res.srcDir("src/test/res")
+            assets.srcDir("src/test/assets")
+        }
+    }
+
+    testOptions {
+        unitTests.isIncludeAndroidResources = true
+    }
 }
 
 dependencies {
