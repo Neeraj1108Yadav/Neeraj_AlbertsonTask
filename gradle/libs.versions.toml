@@ -50,6 +50,8 @@ turbine-test = {group = "app.cash.turbine",name = "turbine", version.ref="turbin
 
 #Mockk
 mockk = {group = "io.mockk", name = "mockk", version.ref="mockk-version"}
+mockk-android = {group = "io.mockk", name = "mockk-android", version.ref="mockk-version"}
+mockk-agent = {group = "io.mockk", name = "mockk-agent", version.ref="mockk-version"}
 
 #Coil
 io-coil-kt-coil3 = {group = "io.coil-kt.coil3", name = "coil-compose", version.ref="coil_version"}

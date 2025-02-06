@@ -39,6 +39,29 @@ android {
     buildFeatures {
         compose = true
     }
+    sourceSets{
+        this.getByName("test"){
+            res.srcDir("src/test/res")
+            assets.srcDir("src/test/assets")
+        }
+        this.getByName("androidTest"){
+            res.srcDir("src/androidTest/res")
+            assets.srcDir("src/androidTest/assets")
+        }
+    }
+
+    testOptions {
+        unitTests.isIncludeAndroidResources = true
+    }
+
+    packaging {
+        resources.excludes.addAll(
+            listOf(
+                "META-INF/LICENSE.md",
+                "META-INF/LICENSE-notice.md",
+            )
+        )
+    }
 }
 
 dependencies {
@@ -80,7 +103,13 @@ dependencies {
     //Unit Test
     testImplementation(libs.coroutine.test)
     testImplementation(libs.mockk)
+    testImplementation(libs.mockk.agent)
     testImplementation(libs.squareup.okhttp.mockwebserver)
     testImplementation(libs.org.robolectric)
     testImplementation(libs.turbine.test)
+
+    //Android test
+    androidTestImplementation(libs.mockk.android)
+    androidTestImplementation(libs.mockk.agent)
+    androidTestImplementation(libs.squareup.okhttp.mockwebserver)
 }

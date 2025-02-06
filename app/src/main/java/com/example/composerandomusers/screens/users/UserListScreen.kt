@@ -1,5 +1,6 @@
 package com.example.composerandomusers.screens.users
 
+import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -21,6 +22,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.composerandomusers.components.CustomInputDialog
@@ -90,6 +92,7 @@ fun UserListScreen(
         },
         floatingActionButton = {
             SmallFloatingActionButton(
+                modifier = Modifier.testTag("button_float"),
                 onClick = {
                         showDialog.value = true
                 },
@@ -106,7 +109,7 @@ fun UserListScreen(
             ){
                 when(val result = userData.value){
                     is UserListUiState.Loading->{
-                        IndeterminateCircular(hideLoader.value)
+                        IndeterminateCircular(hideLoader.value,modifier = Modifier.testTag("loading"))
                     }
                     is UserListUiState.onFailure->{
                         hideLoader.value = true
@@ -114,7 +117,9 @@ fun UserListScreen(
                     is UserListUiState.onSuccess->{
                         hideLoader.value = true
                         defaultUserFetched.value = true
-                        LazyColumn {
+                        LazyColumn(
+                            modifier = Modifier.testTag("user_list")
+                        ) {
                             itemsIndexed(
                                 items = result.users,
                                 key = {index,user->
